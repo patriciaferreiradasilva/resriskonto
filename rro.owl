@@ -165,9 +165,6 @@
         <Class IRI="#material_property"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#material_substance"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#mechanical_resistance"/>
     </Declaration>
     <Declaration>
@@ -453,16 +450,6 @@
         <Class IRI="#material_property"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#absolute_permeability"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000052"/>
-            <ObjectUnionOf>
-                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_rock"/>
-                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_unconsolidated_earth_material"/>
-            </ObjectUnionOf>
-        </ObjectAllValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#aquifer"/>
         <Class IRI="http://purl.obolibrary.org/obo/BFO_0000024"/>
     </SubClassOf>
@@ -527,13 +514,10 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#concentration"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000052"/>
-            <ObjectIntersectionOf>
-                <Class IRI="#material_substance"/>
-                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_material"/>
-            </ObjectIntersectionOf>
-        </ObjectAllValuesFrom>
+        <ObjectMinCardinality cardinality="2">
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000080"/>
+            <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_material"/>
+        </ObjectMinCardinality>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#curve"/>
@@ -548,9 +532,9 @@
         <ObjectSomeValuesFrom>
             <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000057"/>
             <ObjectIntersectionOf>
-                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_fluid"/>
+                <Class IRI="#hydrocarbon"/>
                 <ObjectAllValuesFrom>
-                    <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000053"/>
+                    <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000087"/>
                     <Class IRI="#produced_fluid"/>
                 </ObjectAllValuesFrom>
             </ObjectIntersectionOf>
@@ -586,7 +570,7 @@
     <SubClassOf>
         <Class IRI="#facies_quality"/>
         <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000052"/>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000080"/>
             <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_geological_object"/>
         </ObjectSomeValuesFrom>
     </SubClassOf>
@@ -597,6 +581,20 @@
     <SubClassOf>
         <Class IRI="#fault_reactivation"/>
         <Class IRI="#uncertain_event"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#fault_reactivation"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000057"/>
+            <Class IRI="#fracture"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#fault_reactivation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#manifests"/>
+            <Class IRI="#reactivation_potential"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#fault_structure"/>
@@ -614,19 +612,52 @@
         <Class IRI="#physical_property"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#flow_rate"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000052"/>
-            <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_fluid"/>
-        </ObjectAllValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#fluid_chanelling"/>
         <Class IRI="#uncertain_event"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#fluid_chanelling"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000057"/>
+            <ObjectUnionOf>
+                <Class IRI="#fracture"/>
+                <Class IRI="#karst"/>
+                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_geological_object"/>
+                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_rock"/>
+                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_unconsolidated_earth_material"/>
+            </ObjectUnionOf>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#fluid_chanelling"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#manifests"/>
+            <Class IRI="#permeability"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#fluid_compartmentation"/>
         <Class IRI="#uncertain_event"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#fluid_compartmentation"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000057"/>
+            <ObjectUnionOf>
+                <Class IRI="#fracture"/>
+                <Class IRI="#karst"/>
+                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_geological_object"/>
+                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_rock"/>
+                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_unconsolidated_earth_material"/>
+            </ObjectUnionOf>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#fluid_compartmentation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#manifests"/>
+            <Class IRI="#seal"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#fluid_contact"/>
@@ -635,7 +666,7 @@
     <SubClassOf>
         <Class IRI="#fluid_contact"/>
         <ObjectExactCardinality cardinality="2">
-            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000052"/>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000080"/>
             <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_fluid"/>
         </ObjectExactCardinality>
     </SubClassOf>
@@ -666,6 +697,20 @@
         <Class IRI="#uncertain_event"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#fracturing"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000057"/>
+            <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_rock"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#fracturing"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#manifests"/>
+            <Class IRI="#rupture_potential"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#gas"/>
         <Class IRI="#hydrocarbon"/>
     </SubClassOf>
@@ -684,7 +729,7 @@
             <ObjectIntersectionOf>
                 <Class IRI="#gas"/>
                 <ObjectAllValuesFrom>
-                    <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000053"/>
+                    <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000087"/>
                     <Class IRI="#produced_gas"/>
                 </ObjectAllValuesFrom>
             </ObjectIntersectionOf>
@@ -704,7 +749,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#inadequate"/>
-        <Class IRI="http://purl.obolibrary.org/obo/BFO_0000016"/>
+        <Class IRI="http://purl.obolibrary.org/obo/BFO_0000017"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#inadequate"/>
@@ -777,6 +822,7 @@
                 <Class IRI="#well"/>
                 <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_fluid"/>
                 <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_rock"/>
+                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_unconsolidated_earth_material"/>
             </ObjectUnionOf>
         </ObjectAllValuesFrom>
     </SubClassOf>
@@ -823,18 +869,6 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#loss_event"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000057"/>
-            <ObjectIntersectionOf>
-                <Class IRI="http://purl.obolibrary.org/obo/BFO_0000004"/>
-                <ObjectComplementOf>
-                    <Class IRI="http://purl.obolibrary.org/obo/BFO_0000006"/>
-                </ObjectComplementOf>
-            </ObjectIntersectionOf>
-        </ObjectSomeValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#loss_event"/>
         <ObjectAllValuesFrom>
             <ObjectProperty IRI="#causes"/>
             <Class IRI="#loss_event"/>
@@ -847,17 +881,13 @@
     <SubClassOf>
         <Class IRI="#material_property"/>
         <ObjectAllValuesFrom>
-            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000052"/>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000080"/>
             <Class IRI="http://purl.obolibrary.org/obo/BFO_0000040"/>
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#material_substance"/>
-        <Class IRI="http://purl.obolibrary.org/obo/BFO_0000040"/>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#mechanical_resistance"/>
-        <Class IRI="#material_property"/>
+        <Class IRI="http://purl.obolibrary.org/obo/BFO_0000016"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#oil"/>
@@ -874,7 +904,7 @@
             <ObjectIntersectionOf>
                 <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_fluid"/>
                 <ObjectAllValuesFrom>
-                    <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000053"/>
+                    <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000087"/>
                     <Class IRI="#produced_fluid"/>
                 </ObjectAllValuesFrom>
             </ObjectIntersectionOf>
@@ -913,32 +943,11 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#permoporosity"/>
-        <Class IRI="http://purl.obolibrary.org/obo/BFO_0000016"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#permoporosity"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000052"/>
-            <ObjectUnionOf>
-                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_geological_object"/>
-                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_rock"/>
-                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_unconsolidated_earth_material"/>
-            </ObjectUnionOf>
-        </ObjectAllValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#phase_behavior"/>
         <Class IRI="#material_property"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#phase_behavior"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000052"/>
-            <ObjectUnionOf>
-                <Class IRI="#material_substance"/>
-                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_material"/>
-            </ObjectUnionOf>
-        </ObjectAllValuesFrom>
+        <Class IRI="#material_property"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#physical_property"/>
@@ -956,23 +965,36 @@
         <Class IRI="#uncertain_event"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#pore_collapse"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000057"/>
+            <ObjectUnionOf>
+                <Class IRI="#karst"/>
+                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_rock"/>
+            </ObjectUnionOf>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#pore_collapse"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#manifests"/>
+            <Class IRI="#collapse_potential"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#porosity"/>
         <Class IRI="#material_property"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#porosity"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000052"/>
-            <ObjectUnionOf>
-                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_geological_object"/>
-                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_rock"/>
-                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_unconsolidated_earth_material"/>
-            </ObjectUnionOf>
-        </ObjectAllValuesFrom>
+        <Class IRI="#precipitation"/>
+        <Class IRI="#uncertain_event"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#precipitation"/>
-        <Class IRI="#uncertain_event"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000057"/>
+            <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_material"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#pressure"/>
@@ -1045,6 +1067,7 @@
                 <Class IRI="#well"/>
                 <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_fluid"/>
                 <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_rock"/>
+                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_unconsolidated_earth_material"/>
             </ObjectUnionOf>
         </ObjectAllValuesFrom>
     </SubClassOf>
@@ -1068,9 +1091,9 @@
         <ObjectSomeValuesFrom>
             <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000057"/>
             <ObjectIntersectionOf>
-                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_fluid"/>
+                <Class IRI="#hydrocarbon"/>
                 <ObjectAllValuesFrom>
-                    <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000053"/>
+                    <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000087"/>
                     <Class IRI="#produced_fluid"/>
                 </ObjectAllValuesFrom>
             </ObjectIntersectionOf>
@@ -1084,13 +1107,11 @@
         <Class IRI="#relative_permeability"/>
         <ObjectAllValuesFrom>
             <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000052"/>
-            <ObjectIntersectionOf>
+            <ObjectUnionOf>
                 <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_fluid"/>
-                <ObjectUnionOf>
-                    <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_rock"/>
-                    <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_unconsolidated_earth_material"/>
-                </ObjectUnionOf>
-            </ObjectIntersectionOf>
+                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_rock"/>
+                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_unconsolidated_earth_material"/>
+            </ObjectUnionOf>
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
@@ -1121,8 +1142,22 @@
         <Class IRI="#source_event"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#reveal_inadequacy"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#manifests"/>
+            <Class IRI="#inadequate"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#risk_event"/>
         <Class IRI="http://purl.obolibrary.org/obo/BFO_0000015"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#risk_event"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000057"/>
+            <Class IRI="http://purl.obolibrary.org/obo/BFO_0000004"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#rupture_potential"/>
@@ -1195,33 +1230,11 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#threat_event"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000057"/>
-            <ObjectIntersectionOf>
-                <Class IRI="http://purl.obolibrary.org/obo/BFO_0000004"/>
-                <ObjectComplementOf>
-                    <Class IRI="http://purl.obolibrary.org/obo/BFO_0000006"/>
-                </ObjectComplementOf>
-            </ObjectIntersectionOf>
-        </ObjectSomeValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#threat_event"/>
         <ObjectAllValuesFrom>
             <ObjectProperty IRI="#causes"/>
             <ObjectUnionOf>
                 <Class IRI="#loss_event"/>
                 <Class IRI="#threat_event"/>
-            </ObjectUnionOf>
-        </ObjectAllValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#threat_event"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty IRI="#manifests"/>
-            <ObjectUnionOf>
-                <Class IRI="http://purl.obolibrary.org/obo/BFO_0000006"/>
-                <Class IRI="http://purl.obolibrary.org/obo/BFO_0000020"/>
             </ObjectUnionOf>
         </ObjectAllValuesFrom>
     </SubClassOf>
@@ -1234,21 +1247,15 @@
         <Class IRI="#threat_event"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#underinjectivity"/>
-        <Class IRI="#loss_event"/>
+        <Class IRI="#uncertain_event"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#manifests"/>
+            <Class IRI="#unpredictable"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#underinjectivity"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000057"/>
-            <ObjectIntersectionOf>
-                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_fluid"/>
-                <ObjectAllValuesFrom>
-                    <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000053"/>
-                    <Class IRI="#injected_fluid"/>
-                </ObjectAllValuesFrom>
-            </ObjectIntersectionOf>
-        </ObjectSomeValuesFrom>
+        <Class IRI="#uncertain_event"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#underproductivity"/>
@@ -1259,9 +1266,9 @@
         <ObjectSomeValuesFrom>
             <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000057"/>
             <ObjectIntersectionOf>
-                <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_fluid"/>
+                <Class IRI="#hydrocarbon"/>
                 <ObjectAllValuesFrom>
-                    <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000053"/>
+                    <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000087"/>
                     <Class IRI="#produced_fluid"/>
                 </ObjectAllValuesFrom>
             </ObjectIntersectionOf>
@@ -1269,18 +1276,11 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#unpredictable"/>
-        <Class IRI="http://purl.obolibrary.org/obo/BFO_0000016"/>
+        <Class IRI="http://purl.obolibrary.org/obo/BFO_0000017"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#viscosity"/>
         <Class IRI="#material_property"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#viscosity"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000052"/>
-            <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_fluid"/>
-        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#volume"/>
@@ -1310,6 +1310,13 @@
         </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#well_collapse"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#manifests"/>
+            <Class IRI="#mechanical_resistance"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#well_damaging"/>
         <Class IRI="#source_event"/>
     </SubClassOf>
@@ -1328,7 +1335,7 @@
             <ObjectIntersectionOf>
                 <Class IRI="#water"/>
                 <ObjectAllValuesFrom>
-                    <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000053"/>
+                    <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000087"/>
                     <Class IRI="#produced_water"/>
                 </ObjectAllValuesFrom>
             </ObjectIntersectionOf>
@@ -1483,13 +1490,6 @@
         <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/georeservoirontology#UFRGS:GeoReservoirOntology_dimension"/>
     </SubClassOf>
     <DisjointClasses>
-        <Class IRI="http://purl.obolibrary.org/obo/BFO_0000024"/>
-        <Class IRI="http://purl.obolibrary.org/obo/BFO_0000027"/>
-        <Class IRI="http://purl.obolibrary.org/obo/BFO_0000030"/>
-        <Class IRI="#material_substance"/>
-        <Class IRI="https://www.inf.ufrgs.br/bdi/ontologies/geocoreontology#UFRGS:GeoCoreOntology_earth_material"/>
-    </DisjointClasses>
-    <DisjointClasses>
         <Class IRI="http://purl.obolibrary.org/obo/BFO_0000145"/>
         <Class IRI="http://purl.obolibrary.org/obo/IAO_0000015"/>
         <Class IRI="#facies_quality"/>
@@ -1587,6 +1587,18 @@
         <ObjectProperty IRI="#manifested_by"/>
         <ObjectProperty IRI="#manifests"/>
     </InverseObjectProperties>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#manifested_by"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#manifests"/>
+    </AsymmetricObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#manifested_by"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#manifests"/>
+    </IrreflexiveObjectProperty>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="http://purl.obolibrary.org/obo/IAO_0000136"/>
         <Class IRI="http://purl.obolibrary.org/obo/IAO_0000030"/>
@@ -1601,15 +1613,11 @@
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#manifested_by"/>
-        <Class IRI="http://purl.obolibrary.org/obo/BFO_0000006"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="#manifested_by"/>
         <Class IRI="http://purl.obolibrary.org/obo/BFO_0000020"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#manifests"/>
-        <Class IRI="#threat_event"/>
+        <Class IRI="#risk_event"/>
     </ObjectPropertyDomain>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#caused_by"/>
@@ -1621,11 +1629,7 @@
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#manifested_by"/>
-        <Class IRI="#threat_event"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#manifests"/>
-        <Class IRI="http://purl.obolibrary.org/obo/BFO_0000006"/>
+        <Class IRI="#risk_event"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#manifests"/>
@@ -1964,6 +1968,11 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
         <Literal xml:lang="pt">rocha capeadora</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <IRI>#caused_by</IRI>
+        <Literal xml:lang="en">the relation between one Risk Event and its previous Risk Event, in the case the former occurs because of the latter&apos;s occurrence.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>#caused_by</IRI>
         <Literal xml:lang="pt">causado por</Literal>
@@ -1972,11 +1981,6 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>#caused_by</IRI>
         <Literal xml:lang="en">caused by</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>#caused_by</IRI>
-        <Literal xml:lang="pt">the relation between one Risk Event and its previous Risk Event, in the case the former occurs because of the latter&apos;s occurrence.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
@@ -2076,7 +2080,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#decline_intensification</IRI>
-        <Literal xml:lang="en">it is a Loss Event that results in a declining Flow Rate behavior of the Produced Fluids more severe than expected considering a certain amount of effort in production.</Literal>
+        <Literal xml:lang="en">it is a Loss Event that expresses a declining Flow Rate behavior of the Produced Fluids more severe than expected considering a certain production strategy.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -2121,7 +2125,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#exudation</IRI>
-        <Literal xml:lang="en">it is a Leakage of Oil from the Reservoir through a fracture in the Rocks overlying the Reservoir.</Literal>
+        <Literal xml:lang="en">it is a Leakage of Fluids from the Reservoir through a fracture in the Rocks overlying the Reservoir.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -2221,7 +2225,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#flow_rate</IRI>
-        <Literal xml:lang="en">it is a Physical Property that inheres in an Earth Fluid, and is a scalar expressing the Volume of Fluid in movement that passes per unit time.</Literal>
+        <Literal xml:lang="en">it is a Physical Property of a fluid Material Entity  that is the Volume of Fluid in movement that passes per unit time, expressed by a scalar.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -2366,7 +2370,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#gor_increase</IRI>
-        <Literal xml:lang="en">it is a Loss Event that results in a increasing Ratio of Produced Gas in relation to the Produced Oil from a Reservoir considering a certain amount of effort in production.</Literal>
+        <Literal xml:lang="en">it is a Loss Event that expresses an increasing Ratio of Produced Gas in relation to the Produced Oil from a Reservoir considering a certain amount of effort in production.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -2381,7 +2385,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#hydraulic_fracturing</IRI>
-        <Literal xml:lang="en">it is an Uncertain Event that is the realization of the Rupture Potential of an Amount of Rock caused by the injection of Injected Fluids with certain characteristics (other than temperature) into an Injection Well.</Literal>
+        <Literal xml:lang="en">it is an Source Event in which the  injection fluids with certain characteristics (other than temperature) into an Injection Well leads to induction of fractures in the Rock surrounding the well.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -2426,7 +2430,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#inadequate</IRI>
-        <Literal xml:lang="en">it is a Disposition of Material Entities of not having the best performance in terms of the strategy to produce a reservoir&apos;s hydrocarbon (whatever the best strategy may be).</Literal>
+        <Literal xml:lang="en">it is the Realizable Entity that specifically-depend on the entities that participate in a Risk Event, of not performing optimally in terms of the strategy to produce a reservoir&apos;s hydrocarbon (whatever the best strategy may be).</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000116"/>
@@ -2536,7 +2540,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#injectivity_index</IRI>
-        <Literal xml:lang="en">it is a Relational Quality that inheres in an Injection Well, its adjacent Amount of Rock and the Earth Fluid in a Reservoir, and expresses the ability of the Amount of Rock to receive Fluids (in the role of Injected Fluid) from the wellbore.</Literal>
+        <Literal xml:lang="en">it is a Relational Quality of an Injection Well, its adjacent Amount of Rock and the Earth Fluid in a Reservoir, and expresses the ability of the Amount of Rock to receive Fluids (in the role of Injected Fluid) from the wellbore.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -2551,7 +2555,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#internal_reservoir_surfaces</IRI>
-        <Literal xml:lang="en">are the internal Geological Boundaries between different layers within a Reservoir.</Literal>
+        <Literal xml:lang="en">are the internal Geological Boundaries located at the top or bottom of the  different Depositional Units within a Reservoir.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -2601,7 +2605,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#leakage</IRI>
-        <Literal xml:lang="en">it is a Loss Event in which a certain amount of Produced Oil leaks from the Reservoir or Production structure.</Literal>
+        <Literal xml:lang="en">it is a Loss Event in which a certain amount of Earth Fluid leaks from the Reservoir or Production structure.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -2616,7 +2620,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#loss_event</IRI>
-        <Literal xml:lang="en">it is a Risk Event that has as participant an Earth Fluid  and affects intentions of Reservoir Development Projects in a negative way.</Literal>
+        <Literal xml:lang="en">it is a Risk Event that affects intentions of a subject in a negative way.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000412"/>
@@ -2636,7 +2640,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#manifested_by</IRI>
-        <Literal xml:lang="en">a relation between Specifically Dependent Continuant that inhere in the Material Entities and the Source or Uncertain Events in which such entities participate.</Literal>
+        <Literal xml:lang="en">a relation between a Realizable Entitiy is characteristic of some Independent Continuant and the Process through which this characteristic is exhibited.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -2651,7 +2655,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#manifests</IRI>
-        <Literal xml:lang="pt">a relation between Source and Uncertain Events and the Specifically Dependent Continuant that inhere in the Material Entities that participate in those events.</Literal>
+        <Literal xml:lang="en">a relation between a Process and the Realizable Entity is characteristic of the Independent Continuant that participate in those events.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -2685,28 +2689,8 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
-        <IRI>#material_substance</IRI>
-        <Literal xml:lang="en">is a Material Entity that is a chemical substance that a Material Entity is made of.</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000412"/>
-        <IRI>#material_substance</IRI>
-        <Literal xml:lang="en">imported from the Physics-Based Simulation Ontology (PSO) - Cheong, Hyunmin, and Adrian Butscher. &quot;Physics-based simulation ontology: an ontology to support modelling and reuse of data for physics-based simulation.&quot; Journal of Engineering Design 30.10-12 (2019): 655-687.</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>#material_substance</IRI>
-        <Literal xml:lang="en">material substance</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>#material_substance</IRI>
-        <Literal xml:lang="pt">substancia material</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#mechanical_resistance</IRI>
-        <Literal xml:lang="en">it is a Material Property that is the capacity of a Material Entity of suffering external forces without deforming.</Literal>
+        <Literal xml:lang="en">it is a Disposition of a  Material Entity that is its capacity of suffering external forces without deforming.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -2736,7 +2720,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#oil_ratio_decrease</IRI>
-        <Literal xml:lang="en">it is a Loss Event that results in a declining Ratio of Produced Oil in relation to other Produced Fluids from a Reservoir considering a certain amount of effort in production.</Literal>
+        <Literal xml:lang="en">it is a Loss Event that expresses a declining Ratio of Produced Oil in relation to other Produced Fluids from a Reservoir considering a certain production strategy.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -2766,7 +2750,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#p10_reservoir</IRI>
-        <Literal xml:lang="en">it is a Representation that is about collected data from the Reservoir interpreted in a way that the combination of unknown reservoir variables have 10% of cumulative probability of occurrence for a given objectice function in an uncertainty analysis.</Literal>
+        <Literal xml:lang="en">it is a Representation that is about collected data from the Reservoir interpreted in a way that the combination of unknown reservoir variables have 10% of cumulative probability of occurrence for a given objective function in an uncertainty analysis.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000116"/>
@@ -2786,7 +2770,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#p50_reservoir</IRI>
-        <Literal xml:lang="en">it is a Representation that is about collected data from the Reservoir interpreted in a way that the combination of unknown reservoir variables have 50% of cumulative probability of occurrence for a given objectice function in an uncertainty analysis.</Literal>
+        <Literal xml:lang="en">it is a Representation that is about collected data from the Reservoir interpreted in a way that the combination of unknown reservoir variables have 50% of cumulative probability of occurrence for a given objective function in an uncertainty analysis.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000116"/>
@@ -2806,7 +2790,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#p90_reservoir</IRI>
-        <Literal xml:lang="en">it is a Representation that is about collected data from the Reservoir interpreted in a way that the combination of unknown reservoir variables have 90% of cumulative probability of occurrence for a given objectice function in an uncertainty analysis.</Literal>
+        <Literal xml:lang="en">it is a Representation that is about collected data from the Reservoir interpreted in a way that the combination of unknown reservoir variables have 90% of cumulative probability of occurrence for a given objective function in an uncertainty analysis.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000116"/>
@@ -2826,7 +2810,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#permeability</IRI>
-        <Literal xml:lang="en">it is a Disposition of Earth Material and Geological Objects (or its parts) and realized by its cabability to allow fluids to pass through it.</Literal>
+        <Literal xml:lang="en">it is a Disposition of Earth Material and Geological Objects (or its parts) and realized by its capability to allow fluids to pass through it.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000116"/>
@@ -2846,12 +2830,12 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#permoporosity</IRI>
-        <Literal xml:lang="en">it is a Disposition of an Earth Material and is realized by its capability of either storing of allowing fluid to pass through it.</Literal>
+        <Literal xml:lang="en">it is a Quality of a porous Earth Material that is the amount and interconnectivity of pores (or void spaces) within it.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000116"/>
         <IRI>#permoporosity</IRI>
-        <Literal xml:lang="en">the Reservoir community is interested in the characteristics that make up for the comercial interest of the Hydrocarbon stored in the reservoir. In the case of the reservoir rocks, the porosity and permeability are usually expressed as &quot;permoporosity&quot; - representing at the same time the amount of hydrocarbon stored per rock volume and the ability of the rock to allow fluid flow. It is a term generically used to represent the quality of the reservoir&apos;s rock - probably because of the correlation phixpor for most of the sandstones.</Literal>
+        <Literal xml:lang="en">the Reservoir community is interested in the characteristics that make up for the commercial interest of the Hydrocarbon stored in the reservoir. In the case of the reservoir rocks, the porosity and permeability are usually expressed as &quot;permoporosity&quot; - representing at the same time the amount of hydrocarbon stored per rock volume and the ability of the rock to allow fluid flow. It is a term generically used to represent the quality of the reservoir&apos;s rock - probably because of the correlation phixpor for most of the sandstones.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -2866,7 +2850,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#phase_behavior</IRI>
-        <Literal xml:lang="en">it is a Material Property that inheres in a Earth Material or Material Substance and describes the complex interaction between physically distinct, separable portions of matter called phases that are in contact with each other.</Literal>
+        <Literal xml:lang="en">it is a Material Property of an Earth Material and describes the complex interaction between physically distinct, separable portions of matter called phases that are in contact with each other.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -2916,7 +2900,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#porosity</IRI>
-        <Literal xml:lang="en">it is a Material Property that inheres in a Amount of Rock or Geological Object that is the ratio of the volume of the empty spaces and the total volume of the material.</Literal>
+        <Literal xml:lang="en">it is a Material Property of porous Earth Materials that is the ratio of the volume of the empty spaces and the total volume of the material.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000116"/>
@@ -2951,7 +2935,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#pressure</IRI>
-        <Literal xml:lang="en">it is a Physical Property that inheres in an Material Entities, defined by a scalar that measures the action of forces applied over the Continuant Fiat Boundary of such Entities.</Literal>
+        <Literal xml:lang="en">it is a Physical Property of Material Entities, defined by a scalar that measures the action of forces applied over the Continuant Fiat Boundary of such Entities.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -3026,7 +3010,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#production_well</IRI>
-        <Literal xml:lang="en">it is o Role that is possessed by a certain Well properly equipped to obtain Oil or Natural Gas from a Reservoir.</Literal>
+        <Literal xml:lang="en">it is a Role that is possessed by a certain Well properly equipped to obtain Oil or Natural Gas from a Reservoir.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -3041,7 +3025,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#productivity_index</IRI>
-        <Literal xml:lang="en">it is a Relational Quality that inheres in a Production Well, its adjacent Amount of Rock and the Earth Fluid in a Reservoir, and expresses the ability of the Amount of Rock to deliver Fluids (in the role of Produced Fluid) to the wellbore.</Literal>
+        <Literal xml:lang="en">it is a Relational Quality of a Production Well, its adjacent Amount of Rock and the Earth Fluid in a Reservoir, and expresses the ability of the Amount of Rock to deliver Fluids (in the role of Produced Fluid) to the wellbore.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -3071,7 +3055,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#recovery_reduction</IRI>
-        <Literal xml:lang="en">it is a Loss Event resulting in smaller amounts of the total volume of recovered Oil from a Reservoir than expected considering a certain production effort.</Literal>
+        <Literal xml:lang="en">it is a Loss Event expressing smaller amounts of the total volume of recovered Oil from a Reservoir than expected considering a certain production effort.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -3191,7 +3175,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#risk_event</IRI>
-        <Literal xml:lang="en">it is Process compose a Risk Experience in the Reservoir domain.</Literal>
+        <Literal xml:lang="en">it is Process that either (i) has the potential of causing a loss or (ii) impact intentions of a subject in a negative way.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000412"/>
@@ -3211,7 +3195,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#rupture_potential</IRI>
-        <Literal xml:lang="en">it is a Disposition of Amount of Rock or and is realized by the emergence of Fractures within it under certain conditions.</Literal>
+        <Literal xml:lang="en">it is a Disposition of Amount of Rock and is realized by the emergence of Fractures within it under certain conditions.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -3261,7 +3245,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#source_event</IRI>
-        <Literal xml:lang="en">it is a Threat Event that is an event generated by human action.</Literal>
+        <Literal xml:lang="en">a Threat Event that has participants entities with characteristics that are controllable by human action.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000116"/>
@@ -3346,7 +3330,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#temperature</IRI>
-        <Literal xml:lang="en">it is a Physical Property that inheres in Earth Materials, and is a physical quantity that expresses hot and cold.</Literal>
+        <Literal xml:lang="en">it is a Physical Property of Material Entities, and is a physical quantity that expresses hot and cold.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -3361,7 +3345,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#thermal_fracturing</IRI>
-        <Literal xml:lang="en">it is an Uncertain Event that is the realization of the Rupture Potential of an Amount of Rock caused by the injection of Injected Fluids with certain Temperature into an Injection Well.</Literal>
+        <Literal xml:lang="en">it is an Source Event in which the temperature of injected fluids leads to the induction of fractures in the Rock surrounding the well.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -3376,7 +3360,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#threat_event</IRI>
-        <Literal xml:lang="en">it is a Risk Event that is at the origin of a Loss Event and has participant some Material Entity related to the Reservoir domain, and manifests either the Speciffically Dependent Continuants that inhere on those material entities or the site such Material Entities are located in.</Literal>
+        <Literal xml:lang="en">it is a Risk Event that  has the potential of causing a loss.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -3406,7 +3390,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#uncertain_event</IRI>
-        <Literal xml:lang="en">it is a Threat Event that depends on natural characteristics of the Reservoir.</Literal>
+        <Literal xml:lang="en">it is a Threat Event that has participants entities of the Reservoir, with characteristics naturally defined and non-controllable by human action.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000116"/>
@@ -3426,7 +3410,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#underinjectivity</IRI>
-        <Literal xml:lang="en">it is a Loss Event resulting in smaller amounts of Injected Fluid into a Reservoir than expected considering a certain injection effort.</Literal>
+        <Literal xml:lang="en">it is an Uncertain Event expressing smaller amounts of Injected Fluid into a Reservoir than expected considering a certain injection effort.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -3441,7 +3425,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#underproductivity</IRI>
-        <Literal xml:lang="en">it is a Loss Event resulting in smaller amounts of Produced Fluid from a Reservoir than expected considering a certain injection effort.</Literal>
+        <Literal xml:lang="en">it is a Loss Event expressing smaller lower Flow Rates of Produced Fluid from a Reservoir than expected considering a certain production strategy.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -3456,7 +3440,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#unpredictable</IRI>
-        <Literal xml:lang="pt">it is a Disposition of some Material Entities to not behave as expected.</Literal>
+        <Literal xml:lang="en">it is a Realizable Entity of Material Entities that participate in a Risk Event of not behaving as expected.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000116"/>
@@ -3491,7 +3475,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#volume</IRI>
-        <Literal xml:lang="en">it is a Physical Property thhat inheres in Material Entity, and is a scalar expressing the three-dimensional space occupied by this entity.</Literal>
+        <Literal xml:lang="en">it is a Physical Property of Material Entities, and is a scalar expressing the three-dimensional space occupied by this entity.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -3506,7 +3490,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#water</IRI>
-        <Literal xml:lang="en">it is a naturally ocurring Earth Fluid that is constituted by molecules containing one oxygen and two hydrogen atoms each, connected by covalent bonds.</Literal>
+        <Literal xml:lang="en">it is a naturally occurring Earth Fluid that is constituted by molecules containing one oxygen and two hydrogen atoms each, connected by covalent bonds.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -3521,7 +3505,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#well</IRI>
-        <Literal xml:lang="en">it is a Material Entity characterized by a hole drilled in the ground, properly equipped to reach the Reservoir depth.</Literal>
+        <Literal xml:lang="en">it is an Object characterized by a hole drilled in the ground, properly equipped to reach the Reservoir depth.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -3536,7 +3520,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#well_aggregate</IRI>
-        <Literal xml:lang="en">it is an Aggregate of Wells with different configurations, altogether drilled with the objective of extracting Hydrocarbon from a Reservoir.</Literal>
+        <Literal xml:lang="en">it is an Object Aggregate that has member parts Wells with different configurations, altogether drilled with the objective of extracting Hydrocarbon from a Reservoir.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -3596,7 +3580,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     <AnnotationAssertion>
         <AnnotationProperty IRI="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <IRI>#wor_increase</IRI>
-        <Literal xml:lang="en">it is a Loss Event that results in a increasing Ratio of Produced Water in relation to the Produced Oil from a Reservoir considering a certain amount of effort in production.</Literal>
+        <Literal xml:lang="en">it is a Loss Event that expresses an increasing Ratio of Produced Water in relation to the Produced Oil from a Reservoir considering a certain amount of effort in production.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
